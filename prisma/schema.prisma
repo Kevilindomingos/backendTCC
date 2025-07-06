@@ -31,3 +31,12 @@ model List {
   caregiverName String
   especialConditions String
 }
+
+model DailyList {
+  id Int @id @default(autoincrement())
+  horaRefeicao String
+  medicamentos String
+  atvRealizadas String
+  humorGeral String
+  higienePessoal String
+}

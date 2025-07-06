@@ -135,6 +135,15 @@ exports.Prisma.ListScalarFieldEnum = {
   especialConditions: 'especialConditions'
 };
 
+exports.Prisma.DailyListScalarFieldEnum = {
+  id: 'id',
+  horaRefeicao: 'horaRefeicao',
+  medicamentos: 'medicamentos',
+  atvRealizadas: 'atvRealizadas',
+  humorGeral: 'humorGeral',
+  higienePessoal: 'higienePessoal'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -143,7 +152,8 @@ exports.Prisma.SortOrder = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  List: 'List'
+  List: 'List',
+  DailyList: 'DailyList'
 };
 
 /**

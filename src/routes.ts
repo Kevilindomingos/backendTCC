@@ -1,6 +1,7 @@
 import { Router, Request, Response } from "express";
 import userController from './controllers/user';
 import listController from './controllers/list';
+import dailyList from './controllers/dailyList';
 
 const routes = Router()
 
@@ -18,5 +19,10 @@ routes.post("/list", (req: Request, res:Response) : any => listController.create
 routes.get("/list", (req: Request, res:Response) : any => listController.read(req,res))
 routes.put("/list/:id", (req: Request, res:Response) : any => listController.update(req,res))
 routes.delete("/list/:id", (req: Request, res:Response) : any => listController.delete(req,res))
+
+routes.post("/dailyList", (req: Request, res:Response) : any => dailyList.create(req,res))
+routes.get("/dailyList", (req: Request, res:Response) : any => dailyList.read(req,res))
+routes.put("/dailyList/:id", (req: Request, res:Response) : any => dailyList.update(req,res))
+routes.delete("/dailyList/:id", (req: Request, res:Response) : any => dailyList.delete(req,res))
 
 export default routes

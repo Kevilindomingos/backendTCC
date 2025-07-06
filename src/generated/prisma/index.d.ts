@@ -23,6 +23,11 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  * 
  */
 export type List = $Result.DefaultSelection<Prisma.$ListPayload>
+/**
+ * Model DailyList
+ * 
+ */
+export type DailyList = $Result.DefaultSelection<Prisma.$DailyListPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -168,6 +173,16 @@ export class PrismaClient<
     * ```
     */
   get list(): Prisma.ListDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.dailyList`: Exposes CRUD operations for the **DailyList** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DailyLists
+    * const dailyLists = await prisma.dailyList.findMany()
+    * ```
+    */
+  get dailyList(): Prisma.DailyListDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -609,7 +624,8 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
-    List: 'List'
+    List: 'List',
+    DailyList: 'DailyList'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -628,7 +644,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "list"
+      modelProps: "user" | "list" | "dailyList"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -780,6 +796,80 @@ export namespace Prisma {
           }
         }
       }
+      DailyList: {
+        payload: Prisma.$DailyListPayload<ExtArgs>
+        fields: Prisma.DailyListFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DailyListFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyListPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DailyListFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyListPayload>
+          }
+          findFirst: {
+            args: Prisma.DailyListFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyListPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DailyListFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyListPayload>
+          }
+          findMany: {
+            args: Prisma.DailyListFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyListPayload>[]
+          }
+          create: {
+            args: Prisma.DailyListCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyListPayload>
+          }
+          createMany: {
+            args: Prisma.DailyListCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DailyListCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyListPayload>[]
+          }
+          delete: {
+            args: Prisma.DailyListDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyListPayload>
+          }
+          update: {
+            args: Prisma.DailyListUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyListPayload>
+          }
+          deleteMany: {
+            args: Prisma.DailyListDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DailyListUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DailyListUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyListPayload>[]
+          }
+          upsert: {
+            args: Prisma.DailyListUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyListPayload>
+          }
+          aggregate: {
+            args: Prisma.DailyListAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDailyList>
+          }
+          groupBy: {
+            args: Prisma.DailyListGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DailyListGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DailyListCountArgs<ExtArgs>
+            result: $Utils.Optional<DailyListCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -866,6 +956,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     user?: UserOmit
     list?: ListOmit
+    dailyList?: DailyListOmit
   }
 
   /* Types for Logging */
@@ -3045,6 +3136,1046 @@ export namespace Prisma {
 
 
   /**
+   * Model DailyList
+   */
+
+  export type AggregateDailyList = {
+    _count: DailyListCountAggregateOutputType | null
+    _avg: DailyListAvgAggregateOutputType | null
+    _sum: DailyListSumAggregateOutputType | null
+    _min: DailyListMinAggregateOutputType | null
+    _max: DailyListMaxAggregateOutputType | null
+  }
+
+  export type DailyListAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type DailyListSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type DailyListMinAggregateOutputType = {
+    id: number | null
+    horaRefeicao: string | null
+    medicamentos: string | null
+    atvRealizadas: string | null
+    humorGeral: string | null
+    higienePessoal: string | null
+  }
+
+  export type DailyListMaxAggregateOutputType = {
+    id: number | null
+    horaRefeicao: string | null
+    medicamentos: string | null
+    atvRealizadas: string | null
+    humorGeral: string | null
+    higienePessoal: string | null
+  }
+
+  export type DailyListCountAggregateOutputType = {
+    id: number
+    horaRefeicao: number
+    medicamentos: number
+    atvRealizadas: number
+    humorGeral: number
+    higienePessoal: number
+    _all: number
+  }
+
+
+  export type DailyListAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type DailyListSumAggregateInputType = {
+    id?: true
+  }
+
+  export type DailyListMinAggregateInputType = {
+    id?: true
+    horaRefeicao?: true
+    medicamentos?: true
+    atvRealizadas?: true
+    humorGeral?: true
+    higienePessoal?: true
+  }
+
+  export type DailyListMaxAggregateInputType = {
+    id?: true
+    horaRefeicao?: true
+    medicamentos?: true
+    atvRealizadas?: true
+    humorGeral?: true
+    higienePessoal?: true
+  }
+
+  export type DailyListCountAggregateInputType = {
+    id?: true
+    horaRefeicao?: true
+    medicamentos?: true
+    atvRealizadas?: true
+    humorGeral?: true
+    higienePessoal?: true
+    _all?: true
+  }
+
+  export type DailyListAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DailyList to aggregate.
+     */
+    where?: DailyListWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DailyLists to fetch.
+     */
+    orderBy?: DailyListOrderByWithRelationInput | DailyListOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DailyListWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DailyLists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DailyLists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DailyLists
+    **/
+    _count?: true | DailyListCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DailyListAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DailyListSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DailyListMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DailyListMaxAggregateInputType
+  }
+
+  export type GetDailyListAggregateType<T extends DailyListAggregateArgs> = {
+        [P in keyof T & keyof AggregateDailyList]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDailyList[P]>
+      : GetScalarType<T[P], AggregateDailyList[P]>
+  }
+
+
+
+
+  export type DailyListGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DailyListWhereInput
+    orderBy?: DailyListOrderByWithAggregationInput | DailyListOrderByWithAggregationInput[]
+    by: DailyListScalarFieldEnum[] | DailyListScalarFieldEnum
+    having?: DailyListScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DailyListCountAggregateInputType | true
+    _avg?: DailyListAvgAggregateInputType
+    _sum?: DailyListSumAggregateInputType
+    _min?: DailyListMinAggregateInputType
+    _max?: DailyListMaxAggregateInputType
+  }
+
+  export type DailyListGroupByOutputType = {
+    id: number
+    horaRefeicao: string
+    medicamentos: string
+    atvRealizadas: string
+    humorGeral: string
+    higienePessoal: string
+    _count: DailyListCountAggregateOutputType | null
+    _avg: DailyListAvgAggregateOutputType | null
+    _sum: DailyListSumAggregateOutputType | null
+    _min: DailyListMinAggregateOutputType | null
+    _max: DailyListMaxAggregateOutputType | null
+  }
+
+  type GetDailyListGroupByPayload<T extends DailyListGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DailyListGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DailyListGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DailyListGroupByOutputType[P]>
+            : GetScalarType<T[P], DailyListGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DailyListSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    horaRefeicao?: boolean
+    medicamentos?: boolean
+    atvRealizadas?: boolean
+    humorGeral?: boolean
+    higienePessoal?: boolean
+  }, ExtArgs["result"]["dailyList"]>
+
+  export type DailyListSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    horaRefeicao?: boolean
+    medicamentos?: boolean
+    atvRealizadas?: boolean
+    humorGeral?: boolean
+    higienePessoal?: boolean
+  }, ExtArgs["result"]["dailyList"]>
+
+  export type DailyListSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    horaRefeicao?: boolean
+    medicamentos?: boolean
+    atvRealizadas?: boolean
+    humorGeral?: boolean
+    higienePessoal?: boolean
+  }, ExtArgs["result"]["dailyList"]>
+
+  export type DailyListSelectScalar = {
+    id?: boolean
+    horaRefeicao?: boolean
+    medicamentos?: boolean
+    atvRealizadas?: boolean
+    humorGeral?: boolean
+    higienePessoal?: boolean
+  }
+
+  export type DailyListOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "horaRefeicao" | "medicamentos" | "atvRealizadas" | "humorGeral" | "higienePessoal", ExtArgs["result"]["dailyList"]>
+
+  export type $DailyListPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DailyList"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      horaRefeicao: string
+      medicamentos: string
+      atvRealizadas: string
+      humorGeral: string
+      higienePessoal: string
+    }, ExtArgs["result"]["dailyList"]>
+    composites: {}
+  }
+
+  type DailyListGetPayload<S extends boolean | null | undefined | DailyListDefaultArgs> = $Result.GetResult<Prisma.$DailyListPayload, S>
+
+  type DailyListCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DailyListFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DailyListCountAggregateInputType | true
+    }
+
+  export interface DailyListDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DailyList'], meta: { name: 'DailyList' } }
+    /**
+     * Find zero or one DailyList that matches the filter.
+     * @param {DailyListFindUniqueArgs} args - Arguments to find a DailyList
+     * @example
+     * // Get one DailyList
+     * const dailyList = await prisma.dailyList.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DailyListFindUniqueArgs>(args: SelectSubset<T, DailyListFindUniqueArgs<ExtArgs>>): Prisma__DailyListClient<$Result.GetResult<Prisma.$DailyListPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DailyList that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DailyListFindUniqueOrThrowArgs} args - Arguments to find a DailyList
+     * @example
+     * // Get one DailyList
+     * const dailyList = await prisma.dailyList.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DailyListFindUniqueOrThrowArgs>(args: SelectSubset<T, DailyListFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DailyListClient<$Result.GetResult<Prisma.$DailyListPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DailyList that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyListFindFirstArgs} args - Arguments to find a DailyList
+     * @example
+     * // Get one DailyList
+     * const dailyList = await prisma.dailyList.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DailyListFindFirstArgs>(args?: SelectSubset<T, DailyListFindFirstArgs<ExtArgs>>): Prisma__DailyListClient<$Result.GetResult<Prisma.$DailyListPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DailyList that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyListFindFirstOrThrowArgs} args - Arguments to find a DailyList
+     * @example
+     * // Get one DailyList
+     * const dailyList = await prisma.dailyList.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DailyListFindFirstOrThrowArgs>(args?: SelectSubset<T, DailyListFindFirstOrThrowArgs<ExtArgs>>): Prisma__DailyListClient<$Result.GetResult<Prisma.$DailyListPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DailyLists that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyListFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DailyLists
+     * const dailyLists = await prisma.dailyList.findMany()
+     * 
+     * // Get first 10 DailyLists
+     * const dailyLists = await prisma.dailyList.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const dailyListWithIdOnly = await prisma.dailyList.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends DailyListFindManyArgs>(args?: SelectSubset<T, DailyListFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DailyList.
+     * @param {DailyListCreateArgs} args - Arguments to create a DailyList.
+     * @example
+     * // Create one DailyList
+     * const DailyList = await prisma.dailyList.create({
+     *   data: {
+     *     // ... data to create a DailyList
+     *   }
+     * })
+     * 
+     */
+    create<T extends DailyListCreateArgs>(args: SelectSubset<T, DailyListCreateArgs<ExtArgs>>): Prisma__DailyListClient<$Result.GetResult<Prisma.$DailyListPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DailyLists.
+     * @param {DailyListCreateManyArgs} args - Arguments to create many DailyLists.
+     * @example
+     * // Create many DailyLists
+     * const dailyList = await prisma.dailyList.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DailyListCreateManyArgs>(args?: SelectSubset<T, DailyListCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DailyLists and returns the data saved in the database.
+     * @param {DailyListCreateManyAndReturnArgs} args - Arguments to create many DailyLists.
+     * @example
+     * // Create many DailyLists
+     * const dailyList = await prisma.dailyList.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DailyLists and only return the `id`
+     * const dailyListWithIdOnly = await prisma.dailyList.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DailyListCreateManyAndReturnArgs>(args?: SelectSubset<T, DailyListCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyListPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a DailyList.
+     * @param {DailyListDeleteArgs} args - Arguments to delete one DailyList.
+     * @example
+     * // Delete one DailyList
+     * const DailyList = await prisma.dailyList.delete({
+     *   where: {
+     *     // ... filter to delete one DailyList
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DailyListDeleteArgs>(args: SelectSubset<T, DailyListDeleteArgs<ExtArgs>>): Prisma__DailyListClient<$Result.GetResult<Prisma.$DailyListPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DailyList.
+     * @param {DailyListUpdateArgs} args - Arguments to update one DailyList.
+     * @example
+     * // Update one DailyList
+     * const dailyList = await prisma.dailyList.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DailyListUpdateArgs>(args: SelectSubset<T, DailyListUpdateArgs<ExtArgs>>): Prisma__DailyListClient<$Result.GetResult<Prisma.$DailyListPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DailyLists.
+     * @param {DailyListDeleteManyArgs} args - Arguments to filter DailyLists to delete.
+     * @example
+     * // Delete a few DailyLists
+     * const { count } = await prisma.dailyList.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DailyListDeleteManyArgs>(args?: SelectSubset<T, DailyListDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DailyLists.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyListUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DailyLists
+     * const dailyList = await prisma.dailyList.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DailyListUpdateManyArgs>(args: SelectSubset<T, DailyListUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DailyLists and returns the data updated in the database.
+     * @param {DailyListUpdateManyAndReturnArgs} args - Arguments to update many DailyLists.
+     * @example
+     * // Update many DailyLists
+     * const dailyList = await prisma.dailyList.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more DailyLists and only return the `id`
+     * const dailyListWithIdOnly = await prisma.dailyList.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DailyListUpdateManyAndReturnArgs>(args: SelectSubset<T, DailyListUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyListPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one DailyList.
+     * @param {DailyListUpsertArgs} args - Arguments to update or create a DailyList.
+     * @example
+     * // Update or create a DailyList
+     * const dailyList = await prisma.dailyList.upsert({
+     *   create: {
+     *     // ... data to create a DailyList
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DailyList we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DailyListUpsertArgs>(args: SelectSubset<T, DailyListUpsertArgs<ExtArgs>>): Prisma__DailyListClient<$Result.GetResult<Prisma.$DailyListPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DailyLists.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyListCountArgs} args - Arguments to filter DailyLists to count.
+     * @example
+     * // Count the number of DailyLists
+     * const count = await prisma.dailyList.count({
+     *   where: {
+     *     // ... the filter for the DailyLists we want to count
+     *   }
+     * })
+    **/
+    count<T extends DailyListCountArgs>(
+      args?: Subset<T, DailyListCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DailyListCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DailyList.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyListAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DailyListAggregateArgs>(args: Subset<T, DailyListAggregateArgs>): Prisma.PrismaPromise<GetDailyListAggregateType<T>>
+
+    /**
+     * Group by DailyList.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyListGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DailyListGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DailyListGroupByArgs['orderBy'] }
+        : { orderBy?: DailyListGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DailyListGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDailyListGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DailyList model
+   */
+  readonly fields: DailyListFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DailyList.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DailyListClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DailyList model
+   */
+  interface DailyListFieldRefs {
+    readonly id: FieldRef<"DailyList", 'Int'>
+    readonly horaRefeicao: FieldRef<"DailyList", 'String'>
+    readonly medicamentos: FieldRef<"DailyList", 'String'>
+    readonly atvRealizadas: FieldRef<"DailyList", 'String'>
+    readonly humorGeral: FieldRef<"DailyList", 'String'>
+    readonly higienePessoal: FieldRef<"DailyList", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DailyList findUnique
+   */
+  export type DailyListFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyList
+     */
+    select?: DailyListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyList
+     */
+    omit?: DailyListOmit<ExtArgs> | null
+    /**
+     * Filter, which DailyList to fetch.
+     */
+    where: DailyListWhereUniqueInput
+  }
+
+  /**
+   * DailyList findUniqueOrThrow
+   */
+  export type DailyListFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyList
+     */
+    select?: DailyListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyList
+     */
+    omit?: DailyListOmit<ExtArgs> | null
+    /**
+     * Filter, which DailyList to fetch.
+     */
+    where: DailyListWhereUniqueInput
+  }
+
+  /**
+   * DailyList findFirst
+   */
+  export type DailyListFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyList
+     */
+    select?: DailyListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyList
+     */
+    omit?: DailyListOmit<ExtArgs> | null
+    /**
+     * Filter, which DailyList to fetch.
+     */
+    where?: DailyListWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DailyLists to fetch.
+     */
+    orderBy?: DailyListOrderByWithRelationInput | DailyListOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DailyLists.
+     */
+    cursor?: DailyListWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DailyLists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DailyLists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DailyLists.
+     */
+    distinct?: DailyListScalarFieldEnum | DailyListScalarFieldEnum[]
+  }
+
+  /**
+   * DailyList findFirstOrThrow
+   */
+  export type DailyListFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyList
+     */
+    select?: DailyListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyList
+     */
+    omit?: DailyListOmit<ExtArgs> | null
+    /**
+     * Filter, which DailyList to fetch.
+     */
+    where?: DailyListWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DailyLists to fetch.
+     */
+    orderBy?: DailyListOrderByWithRelationInput | DailyListOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DailyLists.
+     */
+    cursor?: DailyListWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DailyLists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DailyLists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DailyLists.
+     */
+    distinct?: DailyListScalarFieldEnum | DailyListScalarFieldEnum[]
+  }
+
+  /**
+   * DailyList findMany
+   */
+  export type DailyListFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyList
+     */
+    select?: DailyListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyList
+     */
+    omit?: DailyListOmit<ExtArgs> | null
+    /**
+     * Filter, which DailyLists to fetch.
+     */
+    where?: DailyListWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DailyLists to fetch.
+     */
+    orderBy?: DailyListOrderByWithRelationInput | DailyListOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DailyLists.
+     */
+    cursor?: DailyListWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DailyLists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DailyLists.
+     */
+    skip?: number
+    distinct?: DailyListScalarFieldEnum | DailyListScalarFieldEnum[]
+  }
+
+  /**
+   * DailyList create
+   */
+  export type DailyListCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyList
+     */
+    select?: DailyListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyList
+     */
+    omit?: DailyListOmit<ExtArgs> | null
+    /**
+     * The data needed to create a DailyList.
+     */
+    data: XOR<DailyListCreateInput, DailyListUncheckedCreateInput>
+  }
+
+  /**
+   * DailyList createMany
+   */
+  export type DailyListCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DailyLists.
+     */
+    data: DailyListCreateManyInput | DailyListCreateManyInput[]
+  }
+
+  /**
+   * DailyList createManyAndReturn
+   */
+  export type DailyListCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyList
+     */
+    select?: DailyListSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyList
+     */
+    omit?: DailyListOmit<ExtArgs> | null
+    /**
+     * The data used to create many DailyLists.
+     */
+    data: DailyListCreateManyInput | DailyListCreateManyInput[]
+  }
+
+  /**
+   * DailyList update
+   */
+  export type DailyListUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyList
+     */
+    select?: DailyListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyList
+     */
+    omit?: DailyListOmit<ExtArgs> | null
+    /**
+     * The data needed to update a DailyList.
+     */
+    data: XOR<DailyListUpdateInput, DailyListUncheckedUpdateInput>
+    /**
+     * Choose, which DailyList to update.
+     */
+    where: DailyListWhereUniqueInput
+  }
+
+  /**
+   * DailyList updateMany
+   */
+  export type DailyListUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DailyLists.
+     */
+    data: XOR<DailyListUpdateManyMutationInput, DailyListUncheckedUpdateManyInput>
+    /**
+     * Filter which DailyLists to update
+     */
+    where?: DailyListWhereInput
+    /**
+     * Limit how many DailyLists to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DailyList updateManyAndReturn
+   */
+  export type DailyListUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyList
+     */
+    select?: DailyListSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyList
+     */
+    omit?: DailyListOmit<ExtArgs> | null
+    /**
+     * The data used to update DailyLists.
+     */
+    data: XOR<DailyListUpdateManyMutationInput, DailyListUncheckedUpdateManyInput>
+    /**
+     * Filter which DailyLists to update
+     */
+    where?: DailyListWhereInput
+    /**
+     * Limit how many DailyLists to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DailyList upsert
+   */
+  export type DailyListUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyList
+     */
+    select?: DailyListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyList
+     */
+    omit?: DailyListOmit<ExtArgs> | null
+    /**
+     * The filter to search for the DailyList to update in case it exists.
+     */
+    where: DailyListWhereUniqueInput
+    /**
+     * In case the DailyList found by the `where` argument doesn't exist, create a new DailyList with this data.
+     */
+    create: XOR<DailyListCreateInput, DailyListUncheckedCreateInput>
+    /**
+     * In case the DailyList was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DailyListUpdateInput, DailyListUncheckedUpdateInput>
+  }
+
+  /**
+   * DailyList delete
+   */
+  export type DailyListDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyList
+     */
+    select?: DailyListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyList
+     */
+    omit?: DailyListOmit<ExtArgs> | null
+    /**
+     * Filter which DailyList to delete.
+     */
+    where: DailyListWhereUniqueInput
+  }
+
+  /**
+   * DailyList deleteMany
+   */
+  export type DailyListDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DailyLists to delete
+     */
+    where?: DailyListWhereInput
+    /**
+     * Limit how many DailyLists to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DailyList without action
+   */
+  export type DailyListDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyList
+     */
+    select?: DailyListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyList
+     */
+    omit?: DailyListOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -3077,6 +4208,18 @@ export namespace Prisma {
   };
 
   export type ListScalarFieldEnum = (typeof ListScalarFieldEnum)[keyof typeof ListScalarFieldEnum]
+
+
+  export const DailyListScalarFieldEnum: {
+    id: 'id',
+    horaRefeicao: 'horaRefeicao',
+    medicamentos: 'medicamentos',
+    atvRealizadas: 'atvRealizadas',
+    humorGeral: 'humorGeral',
+    higienePessoal: 'higienePessoal'
+  };
+
+  export type DailyListScalarFieldEnum = (typeof DailyListScalarFieldEnum)[keyof typeof DailyListScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3234,6 +4377,65 @@ export namespace Prisma {
     especialConditions?: StringWithAggregatesFilter<"List"> | string
   }
 
+  export type DailyListWhereInput = {
+    AND?: DailyListWhereInput | DailyListWhereInput[]
+    OR?: DailyListWhereInput[]
+    NOT?: DailyListWhereInput | DailyListWhereInput[]
+    id?: IntFilter<"DailyList"> | number
+    horaRefeicao?: StringFilter<"DailyList"> | string
+    medicamentos?: StringFilter<"DailyList"> | string
+    atvRealizadas?: StringFilter<"DailyList"> | string
+    humorGeral?: StringFilter<"DailyList"> | string
+    higienePessoal?: StringFilter<"DailyList"> | string
+  }
+
+  export type DailyListOrderByWithRelationInput = {
+    id?: SortOrder
+    horaRefeicao?: SortOrder
+    medicamentos?: SortOrder
+    atvRealizadas?: SortOrder
+    humorGeral?: SortOrder
+    higienePessoal?: SortOrder
+  }
+
+  export type DailyListWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: DailyListWhereInput | DailyListWhereInput[]
+    OR?: DailyListWhereInput[]
+    NOT?: DailyListWhereInput | DailyListWhereInput[]
+    horaRefeicao?: StringFilter<"DailyList"> | string
+    medicamentos?: StringFilter<"DailyList"> | string
+    atvRealizadas?: StringFilter<"DailyList"> | string
+    humorGeral?: StringFilter<"DailyList"> | string
+    higienePessoal?: StringFilter<"DailyList"> | string
+  }, "id">
+
+  export type DailyListOrderByWithAggregationInput = {
+    id?: SortOrder
+    horaRefeicao?: SortOrder
+    medicamentos?: SortOrder
+    atvRealizadas?: SortOrder
+    humorGeral?: SortOrder
+    higienePessoal?: SortOrder
+    _count?: DailyListCountOrderByAggregateInput
+    _avg?: DailyListAvgOrderByAggregateInput
+    _max?: DailyListMaxOrderByAggregateInput
+    _min?: DailyListMinOrderByAggregateInput
+    _sum?: DailyListSumOrderByAggregateInput
+  }
+
+  export type DailyListScalarWhereWithAggregatesInput = {
+    AND?: DailyListScalarWhereWithAggregatesInput | DailyListScalarWhereWithAggregatesInput[]
+    OR?: DailyListScalarWhereWithAggregatesInput[]
+    NOT?: DailyListScalarWhereWithAggregatesInput | DailyListScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"DailyList"> | number
+    horaRefeicao?: StringWithAggregatesFilter<"DailyList"> | string
+    medicamentos?: StringWithAggregatesFilter<"DailyList"> | string
+    atvRealizadas?: StringWithAggregatesFilter<"DailyList"> | string
+    humorGeral?: StringWithAggregatesFilter<"DailyList"> | string
+    higienePessoal?: StringWithAggregatesFilter<"DailyList"> | string
+  }
+
   export type UserCreateInput = {
     name: string
     email: string
@@ -3352,6 +4554,66 @@ export namespace Prisma {
     roomNumber?: IntFieldUpdateOperationsInput | number
     caregiverName?: StringFieldUpdateOperationsInput | string
     especialConditions?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DailyListCreateInput = {
+    horaRefeicao: string
+    medicamentos: string
+    atvRealizadas: string
+    humorGeral: string
+    higienePessoal: string
+  }
+
+  export type DailyListUncheckedCreateInput = {
+    id?: number
+    horaRefeicao: string
+    medicamentos: string
+    atvRealizadas: string
+    humorGeral: string
+    higienePessoal: string
+  }
+
+  export type DailyListUpdateInput = {
+    horaRefeicao?: StringFieldUpdateOperationsInput | string
+    medicamentos?: StringFieldUpdateOperationsInput | string
+    atvRealizadas?: StringFieldUpdateOperationsInput | string
+    humorGeral?: StringFieldUpdateOperationsInput | string
+    higienePessoal?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DailyListUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    horaRefeicao?: StringFieldUpdateOperationsInput | string
+    medicamentos?: StringFieldUpdateOperationsInput | string
+    atvRealizadas?: StringFieldUpdateOperationsInput | string
+    humorGeral?: StringFieldUpdateOperationsInput | string
+    higienePessoal?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DailyListCreateManyInput = {
+    id?: number
+    horaRefeicao: string
+    medicamentos: string
+    atvRealizadas: string
+    humorGeral: string
+    higienePessoal: string
+  }
+
+  export type DailyListUpdateManyMutationInput = {
+    horaRefeicao?: StringFieldUpdateOperationsInput | string
+    medicamentos?: StringFieldUpdateOperationsInput | string
+    atvRealizadas?: StringFieldUpdateOperationsInput | string
+    humorGeral?: StringFieldUpdateOperationsInput | string
+    higienePessoal?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DailyListUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    horaRefeicao?: StringFieldUpdateOperationsInput | string
+    medicamentos?: StringFieldUpdateOperationsInput | string
+    atvRealizadas?: StringFieldUpdateOperationsInput | string
+    humorGeral?: StringFieldUpdateOperationsInput | string
+    higienePessoal?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -3482,6 +4744,41 @@ export namespace Prisma {
   export type ListSumOrderByAggregateInput = {
     id?: SortOrder
     roomNumber?: SortOrder
+  }
+
+  export type DailyListCountOrderByAggregateInput = {
+    id?: SortOrder
+    horaRefeicao?: SortOrder
+    medicamentos?: SortOrder
+    atvRealizadas?: SortOrder
+    humorGeral?: SortOrder
+    higienePessoal?: SortOrder
+  }
+
+  export type DailyListAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type DailyListMaxOrderByAggregateInput = {
+    id?: SortOrder
+    horaRefeicao?: SortOrder
+    medicamentos?: SortOrder
+    atvRealizadas?: SortOrder
+    humorGeral?: SortOrder
+    higienePessoal?: SortOrder
+  }
+
+  export type DailyListMinOrderByAggregateInput = {
+    id?: SortOrder
+    horaRefeicao?: SortOrder
+    medicamentos?: SortOrder
+    atvRealizadas?: SortOrder
+    humorGeral?: SortOrder
+    higienePessoal?: SortOrder
+  }
+
+  export type DailyListSumOrderByAggregateInput = {
+    id?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {
