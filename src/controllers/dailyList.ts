@@ -4,26 +4,60 @@ import { PrismaClient } from '../generated/prisma';
 const prisma = new PrismaClient()
 
 export default {
+    
     create: async (req: Request, res: Response) => {
-        const dailylist = await prisma.dailyList.create({ data: req.body })
-        return res.status(201).json(dailylist)
+    const id = req.params.id
+    const data = req.body
+
+    const dailylist = await prisma.dailyList.create({ data: { ...data, listId: parseInt(id) }})
+    return res.status(201).json(dailylist)
     },
 
     read: async (req: Request, res: Response) => {
-        const dailylists = await prisma.dailyList.findMany({ select: { id: false, horaRefeicao: true, medicamentos: true,
-             atvRealizadas: true, humorGeral: true, higienePessoal: true } })
+        const dailylists = await prisma.dailyList.findMany({ select: { id: false, horaRefeicao: true, medicamentos: true, atvRealizadas: true, higienePessoal: true }})
         return res.status(200).json(dailylists)
     },
 
     update: async (req: Request, res: Response) => {
         const id = req.params.id
-        const dailylist = await prisma.dailyList.update({data: req.body, where: {id: +id}})
+        const data = req.body
+
+        const dailylist = await prisma.dailyList.update({where: { id: parseInt(id) }, data})
         return res.status(200).json(dailylist)
     },
 
     delete: async (req: Request, res: Response) => {
         const id = req.params.id
-        const dailylist = await prisma.dailyList.delete({where: {id: +id}})
-        return res.status(200).json(dailylist)
+        const dailylist = await prisma.dailyList.delete({where: { id: parseInt(id) }})
+        res.status(200).json(dailylist)
+    },
+
+    listIdoso: async (req: Request, res: Response) => {
+        const id = req.params.id
+        const daily = await prisma.dailyList.findMany({where: { listId: parseInt(id) }})
+        return res.status(200).json(daily)
     }
 }
+
+// create: async (req: Request, res: Response) => {
+//         const dailylist = await prisma.dailyList.create({ data: req.body })
+//         return res.status(201).json(dailylist)
+//     },
+
+//     read: async (req: Request, res: Response) => {
+//         const dailylists = await prisma.dailyList.findMany({ select: { id: false, horaRefeicao: true, medicamentos: true,
+//              atvRealizadas: true, humorGeral: true, higienePessoal: true } })
+//         return res.status(200).json(dailylists)
+//     },
+
+//     update: async (req: Request, res: Response) => {
+//         const id = req.params.id
+//         const dailylist = await prisma.dailyList.update({data: req.body, where: {id: +id}})
+//         return res.status(200).json(dailylist)
+//     },
+
+//     delete: async (req: Request, res: Response) => {
+//         const id = req.params.id
+//         const dailylist = await prisma.dailyList.delete({where: {id: +id}})
+//         return res.status(200).json(dailylist)
+//     }

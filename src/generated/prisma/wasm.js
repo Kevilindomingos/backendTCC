@@ -141,7 +141,8 @@ exports.Prisma.DailyListScalarFieldEnum = {
   medicamentos: 'medicamentos',
   atvRealizadas: 'atvRealizadas',
   humorGeral: 'humorGeral',
-  higienePessoal: 'higienePessoal'
+  higienePessoal: 'higienePessoal',
+  listId: 'listId'
 };
 
 exports.Prisma.SortOrder = {
