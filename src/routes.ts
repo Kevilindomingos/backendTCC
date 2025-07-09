@@ -20,9 +20,10 @@ routes.get("/list", (req: Request, res:Response) : any => listController.read(re
 routes.put("/list/:id", (req: Request, res:Response) : any => listController.update(req,res))
 routes.delete("/list/:id", (req: Request, res:Response) : any => listController.delete(req,res))
 
-routes.post("/dailyList", (req: Request, res:Response) : any => dailyList.create(req,res))
+routes.post("/list/:id/dailyList", (req: Request, res: Response) : any => dailyList.create(req, res));    //atribuição da rotina diaria ao id do idoso
 routes.get("/dailyList", (req: Request, res:Response) : any => dailyList.read(req,res))
 routes.put("/dailyList/:id", (req: Request, res:Response) : any => dailyList.update(req,res))
 routes.delete("/dailyList/:id", (req: Request, res:Response) : any => dailyList.delete(req,res))
+routes.get("/list/:id/dailyList", (req: Request, res: Response) : any => dailyList.listIdoso(req, res));  //rota para visualizar a rotina por id
 
 export default routes

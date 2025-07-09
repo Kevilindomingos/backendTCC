@@ -30,6 +30,8 @@ model List {
   roomNumber Int
   caregiverName String
   especialConditions String
+
+  DailyLists DailyList[]
 }
 
 model DailyList {
@@ -39,4 +41,7 @@ model DailyList {
   atvRealizadas String
   humorGeral String
   higienePessoal String
+
+  listId Int
+  list List @relation(fields: [listId], references: [id])
 }

@@ -1046,6 +1046,36 @@ export namespace Prisma {
    */
 
 
+  /**
+   * Count Type ListCountOutputType
+   */
+
+  export type ListCountOutputType = {
+    DailyLists: number
+  }
+
+  export type ListCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    DailyLists?: boolean | ListCountOutputTypeCountDailyListsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ListCountOutputType without action
+   */
+  export type ListCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ListCountOutputType
+     */
+    select?: ListCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ListCountOutputType without action
+   */
+  export type ListCountOutputTypeCountDailyListsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DailyListWhereInput
+  }
+
 
   /**
    * Models
@@ -2296,6 +2326,8 @@ export namespace Prisma {
     roomNumber?: boolean
     caregiverName?: boolean
     especialConditions?: boolean
+    DailyLists?: boolean | List$DailyListsArgs<ExtArgs>
+    _count?: boolean | ListCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["list"]>
 
   export type ListSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2329,10 +2361,18 @@ export namespace Prisma {
   }
 
   export type ListOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "bornAge" | "image" | "roomNumber" | "caregiverName" | "especialConditions", ExtArgs["result"]["list"]>
+  export type ListInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    DailyLists?: boolean | List$DailyListsArgs<ExtArgs>
+    _count?: boolean | ListCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ListIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type ListIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $ListPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "List"
-    objects: {}
+    objects: {
+      DailyLists: Prisma.$DailyListPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
@@ -2735,6 +2775,7 @@ export namespace Prisma {
    */
   export interface Prisma__ListClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    DailyLists<T extends List$DailyListsArgs<ExtArgs> = {}>(args?: Subset<T, List$DailyListsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2788,6 +2829,10 @@ export namespace Prisma {
      */
     omit?: ListOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ListInclude<ExtArgs> | null
+    /**
      * Filter, which List to fetch.
      */
     where: ListWhereUniqueInput
@@ -2806,6 +2851,10 @@ export namespace Prisma {
      */
     omit?: ListOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ListInclude<ExtArgs> | null
+    /**
      * Filter, which List to fetch.
      */
     where: ListWhereUniqueInput
@@ -2823,6 +2872,10 @@ export namespace Prisma {
      * Omit specific fields from the List
      */
     omit?: ListOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ListInclude<ExtArgs> | null
     /**
      * Filter, which List to fetch.
      */
@@ -2872,6 +2925,10 @@ export namespace Prisma {
      */
     omit?: ListOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ListInclude<ExtArgs> | null
+    /**
      * Filter, which List to fetch.
      */
     where?: ListWhereInput
@@ -2920,6 +2977,10 @@ export namespace Prisma {
      */
     omit?: ListOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ListInclude<ExtArgs> | null
+    /**
      * Filter, which Lists to fetch.
      */
     where?: ListWhereInput
@@ -2962,6 +3023,10 @@ export namespace Prisma {
      * Omit specific fields from the List
      */
     omit?: ListOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ListInclude<ExtArgs> | null
     /**
      * The data needed to create a List.
      */
@@ -3008,6 +3073,10 @@ export namespace Prisma {
      * Omit specific fields from the List
      */
     omit?: ListOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ListInclude<ExtArgs> | null
     /**
      * The data needed to update a List.
      */
@@ -3075,6 +3144,10 @@ export namespace Prisma {
      */
     omit?: ListOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ListInclude<ExtArgs> | null
+    /**
      * The filter to search for the List to update in case it exists.
      */
     where: ListWhereUniqueInput
@@ -3101,6 +3174,10 @@ export namespace Prisma {
      */
     omit?: ListOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ListInclude<ExtArgs> | null
+    /**
      * Filter which List to delete.
      */
     where: ListWhereUniqueInput
@@ -3121,6 +3198,30 @@ export namespace Prisma {
   }
 
   /**
+   * List.DailyLists
+   */
+  export type List$DailyListsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyList
+     */
+    select?: DailyListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyList
+     */
+    omit?: DailyListOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyListInclude<ExtArgs> | null
+    where?: DailyListWhereInput
+    orderBy?: DailyListOrderByWithRelationInput | DailyListOrderByWithRelationInput[]
+    cursor?: DailyListWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DailyListScalarFieldEnum | DailyListScalarFieldEnum[]
+  }
+
+  /**
    * List without action
    */
   export type ListDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3132,6 +3233,10 @@ export namespace Prisma {
      * Omit specific fields from the List
      */
     omit?: ListOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ListInclude<ExtArgs> | null
   }
 
 
@@ -3149,10 +3254,12 @@ export namespace Prisma {
 
   export type DailyListAvgAggregateOutputType = {
     id: number | null
+    listId: number | null
   }
 
   export type DailyListSumAggregateOutputType = {
     id: number | null
+    listId: number | null
   }
 
   export type DailyListMinAggregateOutputType = {
@@ -3162,6 +3269,7 @@ export namespace Prisma {
     atvRealizadas: string | null
     humorGeral: string | null
     higienePessoal: string | null
+    listId: number | null
   }
 
   export type DailyListMaxAggregateOutputType = {
@@ -3171,6 +3279,7 @@ export namespace Prisma {
     atvRealizadas: string | null
     humorGeral: string | null
     higienePessoal: string | null
+    listId: number | null
   }
 
   export type DailyListCountAggregateOutputType = {
@@ -3180,16 +3289,19 @@ export namespace Prisma {
     atvRealizadas: number
     humorGeral: number
     higienePessoal: number
+    listId: number
     _all: number
   }
 
 
   export type DailyListAvgAggregateInputType = {
     id?: true
+    listId?: true
   }
 
   export type DailyListSumAggregateInputType = {
     id?: true
+    listId?: true
   }
 
   export type DailyListMinAggregateInputType = {
@@ -3199,6 +3311,7 @@ export namespace Prisma {
     atvRealizadas?: true
     humorGeral?: true
     higienePessoal?: true
+    listId?: true
   }
 
   export type DailyListMaxAggregateInputType = {
@@ -3208,6 +3321,7 @@ export namespace Prisma {
     atvRealizadas?: true
     humorGeral?: true
     higienePessoal?: true
+    listId?: true
   }
 
   export type DailyListCountAggregateInputType = {
@@ -3217,6 +3331,7 @@ export namespace Prisma {
     atvRealizadas?: true
     humorGeral?: true
     higienePessoal?: true
+    listId?: true
     _all?: true
   }
 
@@ -3313,6 +3428,7 @@ export namespace Prisma {
     atvRealizadas: string
     humorGeral: string
     higienePessoal: string
+    listId: number
     _count: DailyListCountAggregateOutputType | null
     _avg: DailyListAvgAggregateOutputType | null
     _sum: DailyListSumAggregateOutputType | null
@@ -3341,6 +3457,8 @@ export namespace Prisma {
     atvRealizadas?: boolean
     humorGeral?: boolean
     higienePessoal?: boolean
+    listId?: boolean
+    list?: boolean | ListDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["dailyList"]>
 
   export type DailyListSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3350,6 +3468,8 @@ export namespace Prisma {
     atvRealizadas?: boolean
     humorGeral?: boolean
     higienePessoal?: boolean
+    listId?: boolean
+    list?: boolean | ListDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["dailyList"]>
 
   export type DailyListSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3359,6 +3479,8 @@ export namespace Prisma {
     atvRealizadas?: boolean
     humorGeral?: boolean
     higienePessoal?: boolean
+    listId?: boolean
+    list?: boolean | ListDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["dailyList"]>
 
   export type DailyListSelectScalar = {
@@ -3368,13 +3490,25 @@ export namespace Prisma {
     atvRealizadas?: boolean
     humorGeral?: boolean
     higienePessoal?: boolean
+    listId?: boolean
   }
 
-  export type DailyListOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "horaRefeicao" | "medicamentos" | "atvRealizadas" | "humorGeral" | "higienePessoal", ExtArgs["result"]["dailyList"]>
+  export type DailyListOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "horaRefeicao" | "medicamentos" | "atvRealizadas" | "humorGeral" | "higienePessoal" | "listId", ExtArgs["result"]["dailyList"]>
+  export type DailyListInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    list?: boolean | ListDefaultArgs<ExtArgs>
+  }
+  export type DailyListIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    list?: boolean | ListDefaultArgs<ExtArgs>
+  }
+  export type DailyListIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    list?: boolean | ListDefaultArgs<ExtArgs>
+  }
 
   export type $DailyListPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "DailyList"
-    objects: {}
+    objects: {
+      list: Prisma.$ListPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       horaRefeicao: string
@@ -3382,6 +3516,7 @@ export namespace Prisma {
       atvRealizadas: string
       humorGeral: string
       higienePessoal: string
+      listId: number
     }, ExtArgs["result"]["dailyList"]>
     composites: {}
   }
@@ -3776,6 +3911,7 @@ export namespace Prisma {
    */
   export interface Prisma__DailyListClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    list<T extends ListDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ListDefaultArgs<ExtArgs>>): Prisma__ListClient<$Result.GetResult<Prisma.$ListPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3811,6 +3947,7 @@ export namespace Prisma {
     readonly atvRealizadas: FieldRef<"DailyList", 'String'>
     readonly humorGeral: FieldRef<"DailyList", 'String'>
     readonly higienePessoal: FieldRef<"DailyList", 'String'>
+    readonly listId: FieldRef<"DailyList", 'Int'>
   }
     
 
@@ -3827,6 +3964,10 @@ export namespace Prisma {
      * Omit specific fields from the DailyList
      */
     omit?: DailyListOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyListInclude<ExtArgs> | null
     /**
      * Filter, which DailyList to fetch.
      */
@@ -3846,6 +3987,10 @@ export namespace Prisma {
      */
     omit?: DailyListOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyListInclude<ExtArgs> | null
+    /**
      * Filter, which DailyList to fetch.
      */
     where: DailyListWhereUniqueInput
@@ -3863,6 +4008,10 @@ export namespace Prisma {
      * Omit specific fields from the DailyList
      */
     omit?: DailyListOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyListInclude<ExtArgs> | null
     /**
      * Filter, which DailyList to fetch.
      */
@@ -3912,6 +4061,10 @@ export namespace Prisma {
      */
     omit?: DailyListOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyListInclude<ExtArgs> | null
+    /**
      * Filter, which DailyList to fetch.
      */
     where?: DailyListWhereInput
@@ -3960,6 +4113,10 @@ export namespace Prisma {
      */
     omit?: DailyListOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyListInclude<ExtArgs> | null
+    /**
      * Filter, which DailyLists to fetch.
      */
     where?: DailyListWhereInput
@@ -4003,6 +4160,10 @@ export namespace Prisma {
      */
     omit?: DailyListOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyListInclude<ExtArgs> | null
+    /**
      * The data needed to create a DailyList.
      */
     data: XOR<DailyListCreateInput, DailyListUncheckedCreateInput>
@@ -4034,6 +4195,10 @@ export namespace Prisma {
      * The data used to create many DailyLists.
      */
     data: DailyListCreateManyInput | DailyListCreateManyInput[]
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyListIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -4048,6 +4213,10 @@ export namespace Prisma {
      * Omit specific fields from the DailyList
      */
     omit?: DailyListOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyListInclude<ExtArgs> | null
     /**
      * The data needed to update a DailyList.
      */
@@ -4100,6 +4269,10 @@ export namespace Prisma {
      * Limit how many DailyLists to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyListIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -4114,6 +4287,10 @@ export namespace Prisma {
      * Omit specific fields from the DailyList
      */
     omit?: DailyListOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyListInclude<ExtArgs> | null
     /**
      * The filter to search for the DailyList to update in case it exists.
      */
@@ -4140,6 +4317,10 @@ export namespace Prisma {
      * Omit specific fields from the DailyList
      */
     omit?: DailyListOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyListInclude<ExtArgs> | null
     /**
      * Filter which DailyList to delete.
      */
@@ -4172,6 +4353,10 @@ export namespace Prisma {
      * Omit specific fields from the DailyList
      */
     omit?: DailyListOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyListInclude<ExtArgs> | null
   }
 
 
@@ -4216,7 +4401,8 @@ export namespace Prisma {
     medicamentos: 'medicamentos',
     atvRealizadas: 'atvRealizadas',
     humorGeral: 'humorGeral',
-    higienePessoal: 'higienePessoal'
+    higienePessoal: 'higienePessoal',
+    listId: 'listId'
   };
 
   export type DailyListScalarFieldEnum = (typeof DailyListScalarFieldEnum)[keyof typeof DailyListScalarFieldEnum]
@@ -4324,6 +4510,7 @@ export namespace Prisma {
     roomNumber?: IntFilter<"List"> | number
     caregiverName?: StringFilter<"List"> | string
     especialConditions?: StringFilter<"List"> | string
+    DailyLists?: DailyListListRelationFilter
   }
 
   export type ListOrderByWithRelationInput = {
@@ -4334,6 +4521,7 @@ export namespace Prisma {
     roomNumber?: SortOrder
     caregiverName?: SortOrder
     especialConditions?: SortOrder
+    DailyLists?: DailyListOrderByRelationAggregateInput
   }
 
   export type ListWhereUniqueInput = Prisma.AtLeast<{
@@ -4347,6 +4535,7 @@ export namespace Prisma {
     roomNumber?: IntFilter<"List"> | number
     caregiverName?: StringFilter<"List"> | string
     especialConditions?: StringFilter<"List"> | string
+    DailyLists?: DailyListListRelationFilter
   }, "id">
 
   export type ListOrderByWithAggregationInput = {
@@ -4387,6 +4576,8 @@ export namespace Prisma {
     atvRealizadas?: StringFilter<"DailyList"> | string
     humorGeral?: StringFilter<"DailyList"> | string
     higienePessoal?: StringFilter<"DailyList"> | string
+    listId?: IntFilter<"DailyList"> | number
+    list?: XOR<ListScalarRelationFilter, ListWhereInput>
   }
 
   export type DailyListOrderByWithRelationInput = {
@@ -4396,6 +4587,8 @@ export namespace Prisma {
     atvRealizadas?: SortOrder
     humorGeral?: SortOrder
     higienePessoal?: SortOrder
+    listId?: SortOrder
+    list?: ListOrderByWithRelationInput
   }
 
   export type DailyListWhereUniqueInput = Prisma.AtLeast<{
@@ -4408,6 +4601,8 @@ export namespace Prisma {
     atvRealizadas?: StringFilter<"DailyList"> | string
     humorGeral?: StringFilter<"DailyList"> | string
     higienePessoal?: StringFilter<"DailyList"> | string
+    listId?: IntFilter<"DailyList"> | number
+    list?: XOR<ListScalarRelationFilter, ListWhereInput>
   }, "id">
 
   export type DailyListOrderByWithAggregationInput = {
@@ -4417,6 +4612,7 @@ export namespace Prisma {
     atvRealizadas?: SortOrder
     humorGeral?: SortOrder
     higienePessoal?: SortOrder
+    listId?: SortOrder
     _count?: DailyListCountOrderByAggregateInput
     _avg?: DailyListAvgOrderByAggregateInput
     _max?: DailyListMaxOrderByAggregateInput
@@ -4434,6 +4630,7 @@ export namespace Prisma {
     atvRealizadas?: StringWithAggregatesFilter<"DailyList"> | string
     humorGeral?: StringWithAggregatesFilter<"DailyList"> | string
     higienePessoal?: StringWithAggregatesFilter<"DailyList"> | string
+    listId?: IntWithAggregatesFilter<"DailyList"> | number
   }
 
   export type UserCreateInput = {
@@ -4496,6 +4693,7 @@ export namespace Prisma {
     roomNumber: number
     caregiverName: string
     especialConditions: string
+    DailyLists?: DailyListCreateNestedManyWithoutListInput
   }
 
   export type ListUncheckedCreateInput = {
@@ -4506,6 +4704,7 @@ export namespace Prisma {
     roomNumber: number
     caregiverName: string
     especialConditions: string
+    DailyLists?: DailyListUncheckedCreateNestedManyWithoutListInput
   }
 
   export type ListUpdateInput = {
@@ -4515,6 +4714,7 @@ export namespace Prisma {
     roomNumber?: IntFieldUpdateOperationsInput | number
     caregiverName?: StringFieldUpdateOperationsInput | string
     especialConditions?: StringFieldUpdateOperationsInput | string
+    DailyLists?: DailyListUpdateManyWithoutListNestedInput
   }
 
   export type ListUncheckedUpdateInput = {
@@ -4525,6 +4725,7 @@ export namespace Prisma {
     roomNumber?: IntFieldUpdateOperationsInput | number
     caregiverName?: StringFieldUpdateOperationsInput | string
     especialConditions?: StringFieldUpdateOperationsInput | string
+    DailyLists?: DailyListUncheckedUpdateManyWithoutListNestedInput
   }
 
   export type ListCreateManyInput = {
@@ -4562,6 +4763,7 @@ export namespace Prisma {
     atvRealizadas: string
     humorGeral: string
     higienePessoal: string
+    list: ListCreateNestedOneWithoutDailyListsInput
   }
 
   export type DailyListUncheckedCreateInput = {
@@ -4571,6 +4773,7 @@ export namespace Prisma {
     atvRealizadas: string
     humorGeral: string
     higienePessoal: string
+    listId: number
   }
 
   export type DailyListUpdateInput = {
@@ -4579,6 +4782,7 @@ export namespace Prisma {
     atvRealizadas?: StringFieldUpdateOperationsInput | string
     humorGeral?: StringFieldUpdateOperationsInput | string
     higienePessoal?: StringFieldUpdateOperationsInput | string
+    list?: ListUpdateOneRequiredWithoutDailyListsNestedInput
   }
 
   export type DailyListUncheckedUpdateInput = {
@@ -4588,6 +4792,7 @@ export namespace Prisma {
     atvRealizadas?: StringFieldUpdateOperationsInput | string
     humorGeral?: StringFieldUpdateOperationsInput | string
     higienePessoal?: StringFieldUpdateOperationsInput | string
+    listId?: IntFieldUpdateOperationsInput | number
   }
 
   export type DailyListCreateManyInput = {
@@ -4597,6 +4802,7 @@ export namespace Prisma {
     atvRealizadas: string
     humorGeral: string
     higienePessoal: string
+    listId: number
   }
 
   export type DailyListUpdateManyMutationInput = {
@@ -4614,6 +4820,7 @@ export namespace Prisma {
     atvRealizadas?: StringFieldUpdateOperationsInput | string
     humorGeral?: StringFieldUpdateOperationsInput | string
     higienePessoal?: StringFieldUpdateOperationsInput | string
+    listId?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -4706,6 +4913,16 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type DailyListListRelationFilter = {
+    every?: DailyListWhereInput
+    some?: DailyListWhereInput
+    none?: DailyListWhereInput
+  }
+
+  export type DailyListOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type ListCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -4746,6 +4963,11 @@ export namespace Prisma {
     roomNumber?: SortOrder
   }
 
+  export type ListScalarRelationFilter = {
+    is?: ListWhereInput
+    isNot?: ListWhereInput
+  }
+
   export type DailyListCountOrderByAggregateInput = {
     id?: SortOrder
     horaRefeicao?: SortOrder
@@ -4753,10 +4975,12 @@ export namespace Prisma {
     atvRealizadas?: SortOrder
     humorGeral?: SortOrder
     higienePessoal?: SortOrder
+    listId?: SortOrder
   }
 
   export type DailyListAvgOrderByAggregateInput = {
     id?: SortOrder
+    listId?: SortOrder
   }
 
   export type DailyListMaxOrderByAggregateInput = {
@@ -4766,6 +4990,7 @@ export namespace Prisma {
     atvRealizadas?: SortOrder
     humorGeral?: SortOrder
     higienePessoal?: SortOrder
+    listId?: SortOrder
   }
 
   export type DailyListMinOrderByAggregateInput = {
@@ -4775,10 +5000,12 @@ export namespace Prisma {
     atvRealizadas?: SortOrder
     humorGeral?: SortOrder
     higienePessoal?: SortOrder
+    listId?: SortOrder
   }
 
   export type DailyListSumOrderByAggregateInput = {
     id?: SortOrder
+    listId?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -4791,6 +5018,62 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type DailyListCreateNestedManyWithoutListInput = {
+    create?: XOR<DailyListCreateWithoutListInput, DailyListUncheckedCreateWithoutListInput> | DailyListCreateWithoutListInput[] | DailyListUncheckedCreateWithoutListInput[]
+    connectOrCreate?: DailyListCreateOrConnectWithoutListInput | DailyListCreateOrConnectWithoutListInput[]
+    createMany?: DailyListCreateManyListInputEnvelope
+    connect?: DailyListWhereUniqueInput | DailyListWhereUniqueInput[]
+  }
+
+  export type DailyListUncheckedCreateNestedManyWithoutListInput = {
+    create?: XOR<DailyListCreateWithoutListInput, DailyListUncheckedCreateWithoutListInput> | DailyListCreateWithoutListInput[] | DailyListUncheckedCreateWithoutListInput[]
+    connectOrCreate?: DailyListCreateOrConnectWithoutListInput | DailyListCreateOrConnectWithoutListInput[]
+    createMany?: DailyListCreateManyListInputEnvelope
+    connect?: DailyListWhereUniqueInput | DailyListWhereUniqueInput[]
+  }
+
+  export type DailyListUpdateManyWithoutListNestedInput = {
+    create?: XOR<DailyListCreateWithoutListInput, DailyListUncheckedCreateWithoutListInput> | DailyListCreateWithoutListInput[] | DailyListUncheckedCreateWithoutListInput[]
+    connectOrCreate?: DailyListCreateOrConnectWithoutListInput | DailyListCreateOrConnectWithoutListInput[]
+    upsert?: DailyListUpsertWithWhereUniqueWithoutListInput | DailyListUpsertWithWhereUniqueWithoutListInput[]
+    createMany?: DailyListCreateManyListInputEnvelope
+    set?: DailyListWhereUniqueInput | DailyListWhereUniqueInput[]
+    disconnect?: DailyListWhereUniqueInput | DailyListWhereUniqueInput[]
+    delete?: DailyListWhereUniqueInput | DailyListWhereUniqueInput[]
+    connect?: DailyListWhereUniqueInput | DailyListWhereUniqueInput[]
+    update?: DailyListUpdateWithWhereUniqueWithoutListInput | DailyListUpdateWithWhereUniqueWithoutListInput[]
+    updateMany?: DailyListUpdateManyWithWhereWithoutListInput | DailyListUpdateManyWithWhereWithoutListInput[]
+    deleteMany?: DailyListScalarWhereInput | DailyListScalarWhereInput[]
+  }
+
+  export type DailyListUncheckedUpdateManyWithoutListNestedInput = {
+    create?: XOR<DailyListCreateWithoutListInput, DailyListUncheckedCreateWithoutListInput> | DailyListCreateWithoutListInput[] | DailyListUncheckedCreateWithoutListInput[]
+    connectOrCreate?: DailyListCreateOrConnectWithoutListInput | DailyListCreateOrConnectWithoutListInput[]
+    upsert?: DailyListUpsertWithWhereUniqueWithoutListInput | DailyListUpsertWithWhereUniqueWithoutListInput[]
+    createMany?: DailyListCreateManyListInputEnvelope
+    set?: DailyListWhereUniqueInput | DailyListWhereUniqueInput[]
+    disconnect?: DailyListWhereUniqueInput | DailyListWhereUniqueInput[]
+    delete?: DailyListWhereUniqueInput | DailyListWhereUniqueInput[]
+    connect?: DailyListWhereUniqueInput | DailyListWhereUniqueInput[]
+    update?: DailyListUpdateWithWhereUniqueWithoutListInput | DailyListUpdateWithWhereUniqueWithoutListInput[]
+    updateMany?: DailyListUpdateManyWithWhereWithoutListInput | DailyListUpdateManyWithWhereWithoutListInput[]
+    deleteMany?: DailyListScalarWhereInput | DailyListScalarWhereInput[]
+  }
+
+  export type ListCreateNestedOneWithoutDailyListsInput = {
+    create?: XOR<ListCreateWithoutDailyListsInput, ListUncheckedCreateWithoutDailyListsInput>
+    connectOrCreate?: ListCreateOrConnectWithoutDailyListsInput
+    connect?: ListWhereUniqueInput
+  }
+
+  export type ListUpdateOneRequiredWithoutDailyListsNestedInput = {
+    create?: XOR<ListCreateWithoutDailyListsInput, ListUncheckedCreateWithoutDailyListsInput>
+    connectOrCreate?: ListCreateOrConnectWithoutDailyListsInput
+    upsert?: ListUpsertWithoutDailyListsInput
+    connect?: ListWhereUniqueInput
+    update?: XOR<XOR<ListUpdateToOneWithWhereWithoutDailyListsInput, ListUpdateWithoutDailyListsInput>, ListUncheckedUpdateWithoutDailyListsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -4860,6 +5143,150 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type DailyListCreateWithoutListInput = {
+    horaRefeicao: string
+    medicamentos: string
+    atvRealizadas: string
+    humorGeral: string
+    higienePessoal: string
+  }
+
+  export type DailyListUncheckedCreateWithoutListInput = {
+    id?: number
+    horaRefeicao: string
+    medicamentos: string
+    atvRealizadas: string
+    humorGeral: string
+    higienePessoal: string
+  }
+
+  export type DailyListCreateOrConnectWithoutListInput = {
+    where: DailyListWhereUniqueInput
+    create: XOR<DailyListCreateWithoutListInput, DailyListUncheckedCreateWithoutListInput>
+  }
+
+  export type DailyListCreateManyListInputEnvelope = {
+    data: DailyListCreateManyListInput | DailyListCreateManyListInput[]
+  }
+
+  export type DailyListUpsertWithWhereUniqueWithoutListInput = {
+    where: DailyListWhereUniqueInput
+    update: XOR<DailyListUpdateWithoutListInput, DailyListUncheckedUpdateWithoutListInput>
+    create: XOR<DailyListCreateWithoutListInput, DailyListUncheckedCreateWithoutListInput>
+  }
+
+  export type DailyListUpdateWithWhereUniqueWithoutListInput = {
+    where: DailyListWhereUniqueInput
+    data: XOR<DailyListUpdateWithoutListInput, DailyListUncheckedUpdateWithoutListInput>
+  }
+
+  export type DailyListUpdateManyWithWhereWithoutListInput = {
+    where: DailyListScalarWhereInput
+    data: XOR<DailyListUpdateManyMutationInput, DailyListUncheckedUpdateManyWithoutListInput>
+  }
+
+  export type DailyListScalarWhereInput = {
+    AND?: DailyListScalarWhereInput | DailyListScalarWhereInput[]
+    OR?: DailyListScalarWhereInput[]
+    NOT?: DailyListScalarWhereInput | DailyListScalarWhereInput[]
+    id?: IntFilter<"DailyList"> | number
+    horaRefeicao?: StringFilter<"DailyList"> | string
+    medicamentos?: StringFilter<"DailyList"> | string
+    atvRealizadas?: StringFilter<"DailyList"> | string
+    humorGeral?: StringFilter<"DailyList"> | string
+    higienePessoal?: StringFilter<"DailyList"> | string
+    listId?: IntFilter<"DailyList"> | number
+  }
+
+  export type ListCreateWithoutDailyListsInput = {
+    name: string
+    bornAge: string
+    image: string
+    roomNumber: number
+    caregiverName: string
+    especialConditions: string
+  }
+
+  export type ListUncheckedCreateWithoutDailyListsInput = {
+    id?: number
+    name: string
+    bornAge: string
+    image: string
+    roomNumber: number
+    caregiverName: string
+    especialConditions: string
+  }
+
+  export type ListCreateOrConnectWithoutDailyListsInput = {
+    where: ListWhereUniqueInput
+    create: XOR<ListCreateWithoutDailyListsInput, ListUncheckedCreateWithoutDailyListsInput>
+  }
+
+  export type ListUpsertWithoutDailyListsInput = {
+    update: XOR<ListUpdateWithoutDailyListsInput, ListUncheckedUpdateWithoutDailyListsInput>
+    create: XOR<ListCreateWithoutDailyListsInput, ListUncheckedCreateWithoutDailyListsInput>
+    where?: ListWhereInput
+  }
+
+  export type ListUpdateToOneWithWhereWithoutDailyListsInput = {
+    where?: ListWhereInput
+    data: XOR<ListUpdateWithoutDailyListsInput, ListUncheckedUpdateWithoutDailyListsInput>
+  }
+
+  export type ListUpdateWithoutDailyListsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    bornAge?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    roomNumber?: IntFieldUpdateOperationsInput | number
+    caregiverName?: StringFieldUpdateOperationsInput | string
+    especialConditions?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ListUncheckedUpdateWithoutDailyListsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    bornAge?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    roomNumber?: IntFieldUpdateOperationsInput | number
+    caregiverName?: StringFieldUpdateOperationsInput | string
+    especialConditions?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DailyListCreateManyListInput = {
+    id?: number
+    horaRefeicao: string
+    medicamentos: string
+    atvRealizadas: string
+    humorGeral: string
+    higienePessoal: string
+  }
+
+  export type DailyListUpdateWithoutListInput = {
+    horaRefeicao?: StringFieldUpdateOperationsInput | string
+    medicamentos?: StringFieldUpdateOperationsInput | string
+    atvRealizadas?: StringFieldUpdateOperationsInput | string
+    humorGeral?: StringFieldUpdateOperationsInput | string
+    higienePessoal?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DailyListUncheckedUpdateWithoutListInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    horaRefeicao?: StringFieldUpdateOperationsInput | string
+    medicamentos?: StringFieldUpdateOperationsInput | string
+    atvRealizadas?: StringFieldUpdateOperationsInput | string
+    humorGeral?: StringFieldUpdateOperationsInput | string
+    higienePessoal?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DailyListUncheckedUpdateManyWithoutListInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    horaRefeicao?: StringFieldUpdateOperationsInput | string
+    medicamentos?: StringFieldUpdateOperationsInput | string
+    atvRealizadas?: StringFieldUpdateOperationsInput | string
+    humorGeral?: StringFieldUpdateOperationsInput | string
+    higienePessoal?: StringFieldUpdateOperationsInput | string
   }
 
 
