@@ -11,7 +11,7 @@ export default {
     },
 
     read: async (req: Request, res: Response) => {
-        const lists = await prisma.list.findMany({ select: { id: false, image: true, name: true,
+        const lists = await prisma.list.findMany({ select: { id: true, image: true, name: true,
              bornAge: true, roomNumber: true, caregiverName: true, especialConditions: true} })
         return res.status(200).json(lists)
     },
